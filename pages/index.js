@@ -162,11 +162,11 @@ export default function Home() {
           }}
         >
           <Cluster>
-            {animals.map((animal, key) => {
+            {animals?.map((animal, key) => {
               return (
                 <Marker
                   key={key}
-                  coordinates={animal.geometry.coordinates}
+                  coordinates={animal?.geometry?.coordinates}
                   onClick={() => onMarkerClick(animal, key)}
                 >
                   <img
@@ -189,11 +189,11 @@ export default function Home() {
                       width='30vw'
                     >
                       <Text sx={{ marginBottom: '2rem' }} as='h1'>
-                        {animal.data.name}
+                        {animal?.data?.name}
                       </Text>
                       <Image
                         sx={{ marginBottom: '1rem' }}
-                        src={animal.data.image}
+                        src={animal?.data?.image}
                         alt='animal image'
                       />
                       <Flex>
@@ -204,14 +204,14 @@ export default function Home() {
                           sx={{ marginLeft: '0.2rem', marginBottom: '1rem' }}
                           as='p'
                         >
-                          {animal.data.scienceName}
+                          {animal?.data?.scienceName}
                         </Text>
                       </Flex>
-                      <Text as='p'>{animal.data.description}</Text>
+                      <Text as='p'>{animal?.data?.description}</Text>
                       <Link
                         target='_blank'
                         sx={{ color: '#0070f3', marginBottom: '1rem' }}
-                        href={animal.data.moreInfo}
+                        href={animal?.data?.moreInfo}
                       >
                         Mas info{' '}
                       </Link>
@@ -220,7 +220,7 @@ export default function Home() {
                           <b>Categoría: </b>
                         </span>
                         <Text sx={{ marginLeft: '0.2rem' }} as='p'>
-                          {animal.data.category}
+                          {animal?.data?.category}
                         </Text>
                       </Flex>
                     </Flex>
