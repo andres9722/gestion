@@ -133,6 +133,15 @@ export default function Home() {
     }
   };
 
+  const clusterMarker = (coordinates) => (
+    <Marker coordinates={coordinates} style={styles.clusterMarker}>
+      <img
+        style={{ width: '60px' }}
+        src={'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'}
+      />
+    </Marker>
+  );
+
   return (
     <div className={styles.container}>
       <Head>
@@ -153,82 +162,88 @@ export default function Home() {
 
       <main className={styles.main}>
         <Map
+          // onMove={() => setSelectedIndex(null)}
           center={[-75.590553, 6.230833]}
-          zoom={[6]}
+          zoom={[5]}
           style='mapbox://styles/mapbox/streets-v8'
           containerStyle={{
             height: '100vh',
             width: '100vw',
           }}
         >
-          <Cluster>
-            {animals?.map((animal, key) => {
-              return (
-                <Marker
-                  key={key}
-                  coordinates={animal?.geometry?.coordinates}
-                  onClick={() => onMarkerClick(animal, key)}
-                >
-                  <img
-                    style={{ width: '60px' }}
-                    src={
-                      'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'
-                    }
-                  />
-                  {selectedIndex === key && (
-                    <Flex
-                      flexDirection='column'
-                      alignItems='center'
+          {/* <Cluster ClusterMarkerFactory={clusterMarker}> */}
+          {animals?.map((animal, key) => {
+            return (
+              <Marker
+                key={key}
+                coordinates={animal?.geometry?.coordinates}
+                onClick={() => onMarkerClick(animal, key)}
+              >
+                <img
+                  style={{ width: '60px' }}
+                  src={
+                    'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'
+                  }
+                />
+                {selectedIndex === key && (
+                  <Flex
+                    flexDirection='column'
+                    alignItems='center'
+                    sx={{
+                      position: 'absolute',
+                      zIndex: '999999999999',
+                      padding: '1.6rem 2.4rem',
+                      borderRadius: '10px',
+                    }}
+                    backgroundColor='white'
+                    width='30vw'
+                  >
+                    <Text sx={{ marginBottom: '1.6rem' }} as='h1'>
+                      {animal?.data?.name}
+                    </Text>
+                    <Image
                       sx={{
-                        position: 'absolute',
-                        zIndex: '111',
-                        padding: '1.6rem 2.4rem',
-                        borderRadius: '10px',
+                        marginBottom: '1rem',
+                        width: '50%',
+                        height: '120px',
+                        objectFit: 'cover',
                       }}
-                      backgroundColor='white'
-                      width='30vw'
-                    >
-                      <Text sx={{ marginBottom: '2rem' }} as='h1'>
-                        {animal?.data?.name}
-                      </Text>
-                      <Image
-                        sx={{ marginBottom: '1rem' }}
-                        src={animal?.data?.image}
-                        alt='animal image'
-                      />
-                      <Flex>
-                        <span>
-                          <b>Nombre científico: </b>
-                        </span>
-                        <Text
-                          sx={{ marginLeft: '0.2rem', marginBottom: '1rem' }}
-                          as='p'
-                        >
-                          {animal?.data?.scienceName}
-                        </Text>
-                      </Flex>
-                      <Text as='p'>{animal?.data?.description}</Text>
-                      <Link
-                        target='_blank'
-                        sx={{ color: '#0070f3', marginBottom: '1rem' }}
-                        href={animal?.data?.moreInfo}
+                      src={animal?.data?.image}
+                      alt='animal image'
+                    />
+                    <Flex>
+                      <span>
+                        <b>Nombre científico: </b>
+                      </span>
+                      <Text
+                        sx={{ marginLeft: '0.2rem', marginBottom: '1rem' }}
+                        as='p'
                       >
-                        Mas info{' '}
-                      </Link>
-                      <Flex>
-                        <span>
-                          <b>Categoría: </b>
-                        </span>
-                        <Text sx={{ marginLeft: '0.2rem' }} as='p'>
-                          {animal?.data?.category}
-                        </Text>
-                      </Flex>
+                        {animal?.data?.scienceName}
+                      </Text>
                     </Flex>
-                  )}
-                </Marker>
-              );
-            })}
-          </Cluster>
+                    <Text as='p'>{animal?.data?.description}</Text>
+                    <Link
+                      target='_blank'
+                      sx={{ color: '#0070f3', marginBottom: '1rem' }}
+                      href={animal?.data?.moreInfo}
+                    >
+                      Mas info{' '}
+                    </Link>
+                    <Flex>
+                      <span>
+                        <b>Categoría: </b>
+                      </span>
+                      <Text sx={{ marginLeft: '0.2rem' }} as='p'>
+                        {animal?.data?.category}
+                      </Text>
+                    </Flex>
+                  </Flex>
+                )}
+              </Marker>
+            );
+          })}
+          {/* </Cluster> */}
         </Map>
       </main>
     </div>
