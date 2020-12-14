@@ -205,7 +205,7 @@ export default function Home() {
                       sx={{
                         marginBottom: '1rem',
                         width: '50%',
-                        height: '120px',
+                        height: '140px',
                         objectFit: 'cover',
                       }}
                       src={animal?.data?.image}
