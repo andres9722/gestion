@@ -137,7 +137,8 @@ export default function Home() {
     <Marker coordinates={coordinates} style={styles.clusterMarker}>
       <img
         style={{ width: '60px' }}
-        src={'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'}
+        // src={'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'}
+        src={'https://www.flaticon.com/svg/static/icons/svg/131/131693.svg'}
       />
     </Marker>
   );
@@ -150,22 +151,45 @@ export default function Home() {
       </Head>
 
       <header className={styles.header}>
-        <audio controls preload='auto'>
+        <audio controls autoPlay loop>
           <source src='/junglee.ogg' type='audio/ogg' />
           Your browser does not support the audio element.
         </audio>
 
         <Text as='h1' sx={{ color: '#0070f3' }}>
-          Gestión
+          Gestión - Proyecto
         </Text>
       </header>
+
+      <Box
+        sx={{
+          position: 'fixed',
+          top: '80px',
+          zIndex: '99999',
+          left: '20px',
+          padding: '2rem',
+          backgroundColor: 'white',
+          borderRadius: '10px',
+          border: '1px solid #0070f3',
+          width: '20vw',
+        }}
+      >
+        <Text as='h4' marginBottom='1rem'>
+          Animales en peligro de extinción
+        </Text>
+        <Text as='p' fontSize='12px'>
+          Se planea que las personas conozcan acerca de los animales en peligro
+          y se den cuenta de lo necesario que es trabajar para conservarlos a
+          través de comportamientos amigables con el medio ambiente.
+        </Text>
+      </Box>
 
       <main className={styles.main}>
         <Map
           // onMove={() => setSelectedIndex(null)}
           center={[-75.590553, 6.230833]}
           zoom={[5]}
-          style='mapbox://styles/mapbox/streets-v8'
+          style='mapbox://styles/andresss22/ckiqb3cc20nqp17pkfkkv6hrb'
           containerStyle={{
             height: '100vh',
             width: '100vw',
@@ -180,10 +204,13 @@ export default function Home() {
                 onClick={() => onMarkerClick(animal, key)}
               >
                 <img
-                  style={{ width: '60px' }}
+                  style={{ width: '36px' }}
                   src={
-                    'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'
+                    'https://www.flaticon.com/svg/static/icons/svg/131/131693.svg'
                   }
+                  // src={
+                  //   'https://www.flaticon.es/svg/static/icons/svg/1843/1843825.svg'
+                  // }
                 />
                 {selectedIndex === key && (
                   <Flex
