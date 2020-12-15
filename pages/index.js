@@ -223,13 +223,15 @@ export default function Home() {
                       </Text>
                     </Flex>
                     <Text as='p'>{animal?.data?.description}</Text>
-                    <Link
-                      target='_blank'
-                      sx={{ color: '#0070f3', marginBottom: '1rem' }}
-                      href={animal?.data?.moreInfo}
-                    >
-                      Mas info{' '}
-                    </Link>
+                    {animal?.data?.moreInfo && (
+                      <Link
+                        target='_blank'
+                        sx={{ color: '#0070f3', marginBottom: '1rem' }}
+                        href={animal?.data?.moreInfo}
+                      >
+                        Mas info{' '}
+                      </Link>
+                    )}
                     <Flex>
                       <span>
                         <b>Categoría: </b>
